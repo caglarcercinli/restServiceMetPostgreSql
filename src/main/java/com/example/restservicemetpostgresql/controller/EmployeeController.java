@@ -3,8 +3,12 @@ package com.example.restservicemetpostgresql.controller;
 import com.example.restservicemetpostgresql.exception.EmployeeNietGevondenException;
 import com.example.restservicemetpostgresql.model.Employee;
 import com.example.restservicemetpostgresql.service.EmployeeService;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
@@ -35,6 +39,10 @@ public class EmployeeController {
     void put(@PathVariable long id,
              @RequestBody Employee employee){
         employeeService.update(employee.withId(id));
+    }
+    @GetMapping
+    List<Employee> findAll(){
+        return employeeService.findAll();
     }
 
 
