@@ -1,11 +1,10 @@
 package com.example.restservicemetpostgresql.controller;
 
+import com.example.restservicemetpostgresql.exception.EmployeeNietGevondenException;
 import com.example.restservicemetpostgresql.model.Employee;
 import com.example.restservicemetpostgresql.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employees")
@@ -17,6 +16,12 @@ public class EmployeeController {
     }
     @GetMapping("{id}")
     Employee get(@PathVariable long id){
-        return employeeService.findById(id).get();
+        return employeeService.findById(id)
+                .orElseThrow(EmployeeNietGevondenException::new);
     }
+    @ExceptionHandler(EmployeeNietGevondenException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    void EmployeeNietGevonden() {
+    }
+
 }
