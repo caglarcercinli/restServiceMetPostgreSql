@@ -31,6 +31,11 @@ public class EmployeeController {
     void post(@RequestBody Employee employee) {
         employeeService.create(employee);
     }
+    @PutMapping("{id}")
+    void put(@PathVariable long id,
+             @RequestBody Employee employee){
+        employeeService.update(employee.withId(id));
+    }
 
 
 }

@@ -42,4 +42,9 @@ public class Employee {
     public String getEmail() {
         return email;
     }
+    public Employee withId(long id){
+        var employeeMetId = new Employee(firstName,lastName,email);
+        employeeMetId.id=id;
+        return employeeMetId;
+    }
 }
