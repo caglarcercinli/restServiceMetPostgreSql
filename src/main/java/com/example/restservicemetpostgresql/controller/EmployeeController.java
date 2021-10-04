@@ -27,7 +27,10 @@ public class EmployeeController {
     void delete(@PathVariable long id) {
         employeeService.delete(id);
     }
-
+    @PostMapping
+    void post(@RequestBody Employee employee) {
+        employeeService.create(employee);
+    }
 
 
 }
