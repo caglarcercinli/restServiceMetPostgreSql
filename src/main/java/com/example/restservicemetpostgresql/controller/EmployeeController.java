@@ -23,5 +23,11 @@ public class EmployeeController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     void EmployeeNietGevonden() {
     }
+    @DeleteMapping("{id}")
+    void delete(@PathVariable long id) {
+        employeeService.delete(id);
+    }
+
+
 
 }
