@@ -5,6 +5,7 @@ import com.example.restservicemetpostgresql.model.Employee;
 import com.example.restservicemetpostgresql.service.EmployeeService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
+@ExposesResourceFor(Employee.class)
+@CrossOrigin(exposedHeaders = "Location")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
