@@ -18,10 +18,14 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    public Employee(String firstName, String lastName, String email) {
+    @Column(name = "password")
+    private String password;
+
+    public Employee(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
     protected Employee() {
@@ -42,8 +46,13 @@ public class Employee {
     public String getEmail() {
         return email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
     public Employee withId(long id){
-        var employeeMetId = new Employee(firstName,lastName,email);
+        var employeeMetId = new Employee(firstName,lastName,email,password);
         employeeMetId.id=id;
         return employeeMetId;
     }
